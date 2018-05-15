@@ -1,0 +1,83 @@
+<!--添加新闻页面-->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="am-g">
+					<!-- Row start -->
+						<div class="am-u-sm-12">
+							<div class="card-box">
+								<h4 class="header-title m-t-0 m-b-30">输入框类型</h4>
+
+								<div class="am-g">
+									<div class="am-u-md-6">
+										<form class="am-form am-text-sm" method="post" >
+											<div class="am-form-group">
+												<div class="am-g">
+											      <label class="am-u-md-2 am-md-text-right am-padding-left-0" for="doc-ipt-text-1">标题</label>
+											      <input class="am-u-md-10 form-control"  id="doc-ipt-text-1" placeholder="输入标题信息" name="title" value="<?=$row['title'] ?>">
+										      </div>
+										    </div>
+										     <div class="am-form-group">
+										    	<div class="am-g">
+										    		<label class="am-u-md-2 am-md-text-right" for="doc-select-1">类别</label>
+												      <select id="doc-select-1" name="category">
+												        <?php 
+														      foreach($category as $v){
+													  	  		  if($v['id'] == $row ['category']){	
+																	//当前数据的category字段如果和category表中的id字段相等，就是当前默认选项
+														?>
+																	<option value="<?=$v['id'] ?>" selected="selected"><?=$v['title'] ?></option>
+														<?php
+																  }else{
+														?>
+																  	<option value="<?=$v['id'] ?>"><?=$v['title'] ?></option>
+														<?php
+																  }
+													      	  }
+													  	  ?>
+												      </select>
+												      <span class="am-form-caret"></span>
+										    	</div>					      
+										    </div>
+										    <div class="am-form-group">
+										    	<div class="am-g">
+											      <label class="am-u-md-2 am-md-text-right am-padding-left-0" for="doc-ipt-email-1">作者</label>
+											      <input class="am-u-md-10 form-control"  id="doc-ipt-email-1" placeholder="输入电子邮件" name="author" value="<?=$row['author'] ?>">
+											    </div>
+										    </div>
+										    <div class="am-form-group">
+										    	<div class="am-g">
+											      <label class="am-u-md-2 am-md-text-right am-padding-left-0" for="doc-ta-1">内容</label>
+											      <!-- 加载编辑器的容器 -->
+											      <script id="container" name="content" type="text/plain" style="width:900px;height:300px;margin-top:40px;"> <?=$row['content'] ?> </script>
+										    	</div>
+										    </div>
+										     <button type="submit" class="am-btn am-btn-primary">提交</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					<!-- Row end -->
+				</div>
+			</div>
+		</div>
+		<!-- end right Content here -->
+		
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+    </script>
+		
+		
+<script>
+			var errstr = "<?=$errstr ?>";
+			if(errstr.length > 0){
+				alert(errstr);
+			}
+</script>
